@@ -99,6 +99,9 @@ public class IMS {
 		case DELETE:
 			crudController.delete();
 			break;
+		case ADDITEM:
+			crudController.addItemToOrder();
+			break;
 		case RETURN:
 			break;
 		default:

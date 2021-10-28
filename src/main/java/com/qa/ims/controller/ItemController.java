@@ -46,7 +46,7 @@ public class ItemController implements CrudController<Item>{
 		LOGGER.info("Please enter a product name");
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
-		Long value = utils.getLong();
+		Double value = utils.getDouble();
 		Item item = itemDAO.create(new Item(productName, value));
 		LOGGER.info("Item created");
 		return item;
@@ -62,7 +62,7 @@ public class ItemController implements CrudController<Item>{
 		LOGGER.info("Please enter a product name");
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
-		Long value = utils.getLong();
+		Double value = utils.getDouble();
 		Item item = itemDAO.update(new Item(id, productName, value));
 		LOGGER.info("Item Updated");
 		return item;
@@ -78,5 +78,11 @@ public class ItemController implements CrudController<Item>{
 		LOGGER.info("Please enter the id of the item you would like to delete");
 		Long id = utils.getLong();
 		return itemDAO.delete(id);
+	}
+
+	@Override
+	public Item addItemToOrder() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

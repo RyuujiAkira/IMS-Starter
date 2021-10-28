@@ -80,4 +80,10 @@ public class CustomerController implements CrudController<Customer> {
 		return customerDAO.delete(id);
 	}
 
+	@Override
+	public Customer addItemToOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
