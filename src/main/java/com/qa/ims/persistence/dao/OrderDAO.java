@@ -171,4 +171,22 @@ public class OrderDAO  implements Dao<Order>{
 		}
 		return 0;
 	}
+	
+	public Double orderCalculation(Long orderID) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("SELECT order_id, order_items.quantity * items.value AS order_total FROM order_items INNER JOIN "
+						+ "items ON order_items.product_id = items.id WHERE order_id = ?");) {
+			statement.setLong(1, orderID);
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+			Double totalValue = resultSet.getDouble("order_total");
+			return totalValue;
+			
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+			return (double) 0;
+		}
+		
+	}
 }

@@ -92,4 +92,9 @@ public class CustomerController implements CrudController<Customer> {
 		
 	}
 
+	@Override
+	public void calculateOrder() {
+		// TODO Auto-generated method stub
+	}
+
 }

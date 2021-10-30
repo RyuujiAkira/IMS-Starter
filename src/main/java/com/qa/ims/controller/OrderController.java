@@ -109,4 +109,12 @@ public class OrderController implements CrudController<Order>{
 		LOGGER.info("Item deleted from order");
 		orderDAO.deleteItemFromOrder(new OrderItems(productID, quantity, orderID));
 	}
+	
+	public void calculateOrder() {
+		LOGGER.info("Please enter the id of the order you would like to calculate the total value of");
+		Long orderID = utils.getLong();
+		Double orderTotal = orderDAO.orderCalculation(orderID);
+		Double roundDouble = Math.round(orderTotal * 100.0) / 100.0;
+		LOGGER.info("Order-" + orderID + " total is: £" + roundDouble);
+	}
 }

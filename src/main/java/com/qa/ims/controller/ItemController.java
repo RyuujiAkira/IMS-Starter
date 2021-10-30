@@ -91,4 +91,9 @@ public class ItemController implements CrudController<Item>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void calculateOrder() {
+		// TODO Auto-generated method stub
+	}
 }
