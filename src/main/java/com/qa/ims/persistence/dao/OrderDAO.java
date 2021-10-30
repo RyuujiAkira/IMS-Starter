@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO  implements Dao<Order>{
@@ -22,9 +23,7 @@ public class OrderDAO  implements Dao<Order>{
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerID = resultSet.getLong("customer_id");
-		Long productID = resultSet.getLong("product_id");
-		Long quantity = resultSet.getLong("quantity");
-		return new Order(id, customerID, productID, quantity);
+		return new Order(id, customerID);
 	}
 
 	/**
@@ -137,5 +136,57 @@ public class OrderDAO  implements Dao<Order>{
 			LOGGER.error(e.getMessage());
 		}
 		return 0;
+	}
+	
+	/**
+	 * Adds an item to an order in the database
+	 */
+	public int addItemToOrder(OrderItems orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO order_items(product_id, quantity, order_id) VALUES (?, ?, ?)");) {
+			statement.setLong(1, orderItem.getProductID());
+			statement.setLong(2, orderItem.getQuantity());
+			statement.setLong(3, orderItem.getOrderID());
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
+	
+	/**
+	 * Deletes an item to an order in the database
+	 */
+	public int deleteItemFromOrder(OrderItems orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM order_items WHERE product_id = ? AND quantity = ? AND order_id = ?");) {
+			statement.setLong(1, orderItem.getProductID());
+			statement.setLong(2, orderItem.getQuantity());
+			statement.setLong(3, orderItem.getOrderID());
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
+	
+	public Double orderCalculation(Long orderID) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("SELECT order_id, order_items.quantity * items.value AS order_total FROM order_items INNER JOIN "
+						+ "items ON order_items.product_id = items.id WHERE order_id = ?");) {
+			statement.setLong(1, orderID);
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+			Double totalValue = resultSet.getDouble("order_total");
+			return totalValue;
+			
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+			return (double) 0;
+		}
+		
 	}
 }
