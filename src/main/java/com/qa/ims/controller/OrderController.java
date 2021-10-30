@@ -1,5 +1,7 @@
 package com.qa.ims.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItems;
+import com.qa.ims.utils.DBUtils;
 import com.qa.ims.utils.Utils;
 
 /**
@@ -73,6 +77,20 @@ public class OrderController implements CrudController<Order>{
 	public int delete() {
 		LOGGER.info("Please enter the id of the order you would like to delete");
 		Long id = utils.getLong();
+		LOGGER.info("Order Deleted");
 		return orderDAO.delete(id);
+	}
+	/**
+	 * Adds an item to an order in the database
+	 * 
+	 */
+	public void addItemOrder() {
+		LOGGER.info("Please enter the id of the product you would like to add");
+		Long productID = utils.getLong();
+		LOGGER.info("Please enter the quantity of the product you would like to add");
+		Long quantity = utils.getLong();
+		LOGGER.info("Please enter the order id for the order you want to add the item to");
+		Long orderID = utils.getLong();
+		orderDAO.addItemToOrder(new OrderItems(productID, quantity, orderID));
 	}
 }

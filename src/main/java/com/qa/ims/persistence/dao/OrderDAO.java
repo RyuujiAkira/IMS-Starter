@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO  implements Dao<Order>{
@@ -129,6 +130,22 @@ public class OrderDAO  implements Dao<Order>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM orders WHERE id = ?");) {
 			statement.setLong(1, id);
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
+	
+	/**
+	 * Adds an item to an order in the database
+	 */
+	public int addItemToOrder(OrderItems orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO order_items(product_id, order_id) VALUES (?, ?)");) {
+			statement.setLong(1, orderItem.getProductID());
+			statement.setLong(2, orderItem.getOrderID());
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);
