@@ -6,7 +6,6 @@ public class Order {
 	
 	public Order(Long customerID) {
 		this.setCustomerID(customerID);
-
 	}
 
 	public Order(Long id, Long customerID) {
