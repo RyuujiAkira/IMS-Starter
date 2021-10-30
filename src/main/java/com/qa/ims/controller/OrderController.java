@@ -93,4 +93,18 @@ public class OrderController implements CrudController<Order>{
 		Long orderID = utils.getLong();
 		orderDAO.addItemToOrder(new OrderItems(productID, quantity, orderID));
 	}
+	
+	/**
+	 * Deletes an item from an order in the database
+	 * 
+	 */
+	public void deleteItemOrder() {
+		LOGGER.info("Please enter the id of the product you would like to delete");
+		Long productID = utils.getLong();
+		LOGGER.info("Please enter the quantity of the product that is going to be deleted");
+		Long quantity = utils.getLong();
+		LOGGER.info("Please enter the order id for the order you want to delete the item from");
+		Long orderID = utils.getLong();
+		orderDAO.deleteItemFromOrder(new OrderItems(productID, quantity, orderID));
+	}
 }

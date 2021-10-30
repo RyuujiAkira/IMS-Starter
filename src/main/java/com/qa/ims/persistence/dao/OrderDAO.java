@@ -143,9 +143,27 @@ public class OrderDAO  implements Dao<Order>{
 	 */
 	public int addItemToOrder(OrderItems orderItem) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("INSERT INTO order_items(product_id, order_id) VALUES (?, ?)");) {
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO order_items(product_id, quantity, order_id) VALUES (?, ?, ?)");) {
 			statement.setLong(1, orderItem.getProductID());
-			statement.setLong(2, orderItem.getOrderID());
+			statement.setLong(2, orderItem.getQuantity());
+			statement.setLong(3, orderItem.getOrderID());
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
+	
+	/**
+	 * Deletes an item to an order in the database
+	 */
+	public int deleteItemFromOrder(OrderItems orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM order_items WHERE product_id = ? AND quantity = ? AND order_id = ?");) {
+			statement.setLong(1, orderItem.getProductID());
+			statement.setLong(2, orderItem.getQuantity());
+			statement.setLong(3, orderItem.getOrderID());
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);
