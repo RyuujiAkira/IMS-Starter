@@ -91,6 +91,7 @@ public class OrderController implements CrudController<Order>{
 		Long quantity = utils.getLong();
 		LOGGER.info("Please enter the order id for the order you want to add the item to");
 		Long orderID = utils.getLong();
+		LOGGER.info("Item added to order");
 		orderDAO.addItemToOrder(new OrderItems(productID, quantity, orderID));
 	}
 	
@@ -105,6 +106,7 @@ public class OrderController implements CrudController<Order>{
 		Long quantity = utils.getLong();
 		LOGGER.info("Please enter the order id for the order you want to delete the item from");
 		Long orderID = utils.getLong();
+		LOGGER.info("Item deleted from order");
 		orderDAO.deleteItemFromOrder(new OrderItems(productID, quantity, orderID));
 	}
 }
