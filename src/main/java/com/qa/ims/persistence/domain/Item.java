@@ -4,14 +4,14 @@ public class Item {
 
 	private Long id;
 	private String productName;
-	private Long value;
+	private Double value;
 	
-	public Item(String productName, Long value) {
+	public Item(String productName, Double value) {
 		this.setProductName(productName);
 		this.setValue(value);
 	}
 
-	public Item(Long id, String productName, Long value) {
+	public Item(Long id, String productName, Double value) {
 		this.setId(id);
 		this.setProductName(productName);
 		this.setValue(value);
@@ -33,11 +33,11 @@ public class Item {
 		this.productName = productName;
 	}
 	
-	public Long getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(Long value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 
