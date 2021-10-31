@@ -15,3 +15,22 @@ CREATE TABLE IF NOT EXISTS `items` (
     `value` FLOAT DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
+
+DROP TABLE IF EXISTS `orders`;
+
+CREATE TABLE IF NOT EXISTS `orders` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `customer_id` INT DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+
+DROP TABLE IF EXISTS `order_items`;
+
+CREATE TABLE IF NOT EXISTS `order_items` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `product_id` INT DEFAULT NULL,
+    `quantity` INT DEFAULT NULL,
+    `order_id` INT DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+

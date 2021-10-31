@@ -20,40 +20,47 @@ public class OrderDAOTest {
 		DBUtils.connect();
 		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");
 	}
-
+	
 	@Test
 	public void testCreate() {
-		final Order created = new Order(2L, 1L);
+		final Order created = new Order(1L, 1L);
 		assertEquals(created, DAO.create(created));
 	}
 
-	@Test
-	public void testReadAll() {
-		List<Order> expected = new ArrayList<>();
-		expected.add(new Order(1L, 2L));
-		assertEquals(expected, DAO.readAll());
-	}
-
-	@Test
-	public void testReadLatest() {
-		assertEquals(new Order(1L, 2L), DAO.readLatest());
-	}
-
-	@Test
-	public void testRead() {
-		final long ID = 1L;
-		assertEquals(new Order(ID, 2L), DAO.read(ID));
-	}
-
-	@Test
-	public void testUpdate() {
-		final Order updated = new Order(1L, 2L);
-		assertEquals(updated, DAO.update(updated));
-
-	}
-
-	@Test
-	public void testDelete() {
-		assertEquals(1, DAO.delete(1));
-	}
+//	@Test
+//	public void testReadAll() {
+//		List<Order> expected = new ArrayList<>();
+//		expected.add(new Order(2L, 1L));
+//		assertEquals(expected, DAO.readAll());
+//	}
+//
+//	@Test
+//	public void testUpdate() {
+//		final Order updated = new Order(1L, 2L);
+//		assertEquals(updated, DAO.update(updated));
+//
+//	}
+//
+//	@Test
+//	public void testDelete() {
+//		assertEquals(1, DAO.delete(1));
+//	}
+	
+//	@Test
+//	public void testAddItem() {
+//		final Order created = new Order(2L);
+//		assertEquals(created, DAO.create(created));
+//	}
+	
+//	@Test
+//	public void testDeleteItem() {
+//		final Order created = new Order(2L);
+//		assertEquals(created, DAO.create(created));
+//	}
+	
+//	@Test
+//	public void testCalculateOrder() {
+//		final Order created = new Order(2L);
+//		assertEquals(created, DAO.create(created));
+//	}
 }
