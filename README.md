@@ -1,4 +1,4 @@
-Coverage: 34%
+Coverage: 68.1%
 # IMS - Inventory Management System
 
 This project is called IMS and is an inventory management system that allows the user to use the system to create customers, items, and orders. The user can also update and
