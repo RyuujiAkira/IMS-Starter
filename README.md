@@ -36,8 +36,9 @@ A step by step series of examples that tell you how to get a development environ
 9. Run the program in the IDE
 
 
+In the console the user can enter one of the three entities on the system `CUSTOMER`, `ITEM`, `ORDER`
 
-End with an example of getting some data out of the system or using it for a little demo
+Here the user can `CREATE`, `UPDATE`, `READ`, `DELETE` for all three entities. These actions allow the user to create, update, read and delete the respective customers, items and orders. Futhermore if `ORDER` is selected they have additional options which are `ADDITEM`, `DELETEITEM`, `CALCULATEORDER`. These actions allow the user to add an item to an order, delete an item from an order and also caluclate the total value of the order. 
 
 ## Running the tests
 
@@ -68,7 +69,12 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+1. To deploy the program on a live system you must have Jave JDK installed on your machine. 
+2. Open command prompt on your system
+3. Clone the repository with the command `git clone https://github.com/RyuujiAkira/IMS-Starter.git`
+4. Locate the folder in command prompt
+5. Run the command ``` java -jar ims-0.0.1-jar-waith-dependencies.jar ```
+6. The program should start running 
 
 ## Built With
 
