@@ -14,11 +14,11 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 Intended for Windows users. Any other Operating Systems find their respective ways to download and install the software in the prerequisites
 
-Git - https://git-scm.com/downloads
-Maven - https://maven.apache.org/download.cgi
-Java JDK - https://www.oracle.com/java/technologies/downloads/#jdk17-windows
-MySQL - https://dev.mysql.com/downloads/windows/installer/8.0.html
-Java IDE (Eclipse)
+* Git - https://git-scm.com/downloads
+* Maven - https://maven.apache.org/download.cgi
+* Java JDK - https://www.oracle.com/java/technologies/downloads/#jdk17-windows
+* MySQL - https://dev.mysql.com/downloads/windows/installer/8.0.html
+* Java IDE (Eclipse)
 
 
 ### Installing
@@ -43,28 +43,31 @@ Here the user can `CREATE`, `UPDATE`, `READ`, `DELETE` for all three entities. T
 ## Running the tests
 
 Explain how to run the automated tests for this system. Break down into which tests and what they do
+To run the automated tests for the program all the user has to do is use the Eclipse IDE and run the project folder as a JUnit Test. This will run all test scenarios with test files and will give the coverage, any failures and errors with context on the screen. 
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+Unit tests are tests on smaller pieces of code and normally tests a single method to see if the method returns the expected result. These sorts of tests are important since testing indivdual parts instead of the whole system allows to refine the scope of if there are problems with methods or classes. These can be pinpointed and debugged to solve issues further down the line.
 
 ```
-Give an example
+To run a unit test the user can click on a class they want to test and run it as a JUnit Test by itself on the Eclipse IDE.
 ```
 
 ### Integration Tests 
 Explain what these tests test, why and how to run them
 
+Integration tests are the tests that come after unit testing since this makes sure all components of the system integrate together with no issues. Due to all the unit testing making sure all individual parts are working as intended the possibility that they might not work together might be likely which is why these tests exist. There are three main ways to do integration testing and the method I have used is the Big Bang integration which you combine all the files together for testing and hope it works although the flaw is that errors might not be shown in detail. 
+
 ```
-Give an example
+To run a integration test the user can run the whole project as a JUnit Test on the Eclipse IDE.
 ```
 
 ### And coding style tests
 
-Explain what these tests test and why
+Coding style tests are tests to check if the code is written to a readable level since everyone codes differently to one another. Some styles should be adopted so that the code can be read and understood for future development or maintaining the code. The styles I used throughout the code were PascalCase, camelCase and appropriate spacing making sure all code looks consistent and consise. Comments were also added throughout the code to help anyone who is new to the system what each method does if not clear by the method name. 
 
 ```
-Give an example
+To run coding style tests I manually reviewed the code looking for inconsistencies and fixing them if I do find them to be consistent and concise throughout the code.
 ```
 
 ## Deployment
@@ -98,8 +101,6 @@ We use [Git](https://git-scm.com/) and [GitHub](https://github.com/) for version
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
-
-*For help in [Choosing a license](https://choosealicense.com/)*
 
 ## Acknowledgments
 
